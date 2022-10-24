@@ -25,6 +25,7 @@ body {
 .heading {
     text-align: center;
     padding: 5px;
+    padding-top: 10px;
 }
 
 .instructions {

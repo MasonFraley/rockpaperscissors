@@ -2,70 +2,67 @@ let playerMatchScore = 0;
 let computerMatchScore = 0;
 let playerGameScore = 0;
 let computerGameScore = 0;
-let gameWinner = 0;
 
-const choice1 = document.getElementById("rock");
-console.log(choice1);
+document.getElementById("rock").addEventListener("click", function(event) {
+  console.log("clicked rock");
+  generateComputerChoice();
+  comparison(generateComputerChoice(), this.id);
+});
 
-const choice2 = document.getElementById("paper");
-console.log(choice2);
+document.getElementById("paper").addEventListener("click", function(event) {
+  console.log("clicked paper");
+  generateComputerChoice();
+  comparison(generateComputerChoice(), this.id);
+});
 
-const choice3 = document.getElementById("scissors");
-console.log(choice3);
+document.getElementById("scissors").addEventListener("click", function(event) {
+  console.log("clicked scissors");
+  generateComputerChoice();
+  comparison(generateComputerChoice(), this.id);
+});
 
-choice1.addEventListener("click", function(event) {
-    console.log("clicked rock")
-})
-
-choice2.addEventListener("click", function(event) {
-    console.log("clicked paper")
-})
-
-choice3.addEventListener("click", function(event) {
-    console.log("clicked scissors")
-})
-
-function getRandomInt(min, max) {
-    min = Math.ceil(1);
-    max = Math.floor(4);
-    return Math.floor(Math.random()*(4-1)+1);
+function generateComputerChoice() {
+  var computerChoice = Math.floor(Math.random()*3);
+  if (computerChoice === 0) return "rock";
+  if (computerChoice === 1) return "paper";
+  if (computerChoice === 2) return "scissors";
 }
 
-console.log(getRandomInt());
+var computerChoice2 = generateComputerChoice()
+console.log(computerChoice2)
 
-const computerChoice = getRandomInt();
-
-var tie;
-const playerWinGame = playerGameScore ++;
-const computerWinGam = computerGameScore ++;
-
-function comparison() {
-  if ((computerChoice == 1) && (playerChoice == choice2)) {
-    return(playerWinGame)}
-  else if ((computerChoice == 1) && (playerChoice == choice3)) {
-    return(computerWinGame)}
-  else if ((computerChoice == 2) && (playerChoice == choice1)) {
-    return(computerWinGame)}
-  else if ((computerChoice == 2) && (playerChoice == choice3)) {
-    return(computerWinGame)}
-  else if ((computerChoice == 3) && (playerChoice == choice1)) {
-    return(playerWinGame)}
-  else if ((computerChoice == 3) && (playerChoice == choice2)) {
-    return(playerWinGame)}   
-  else if ((computerChoice == 2) && (playerChoice == choice2)) {
-    return(tie)}
-  else if ((computerChoice == 1) && (playerChoice == choice1)) {
-    return(tie)}
-  else if ((computerChoice == 3) && (playerChoice == choice3)) {
-    return(tie)}
-}  
-
-console.log(comparison)
-
-function postComputerScore() {
-    computerGameScore = document.getElementById("computerGameScore").innerHTML
-}
-
-function postPlayerScore() {
-    playerGameScore = document.getElementById("playerGameScore").innerHTML
-}
+function comparison(computerChoice2, playerChoice) {
+    if (computerChoice2 == "rock" && playerChoice == "paper") {
+      playerGameScore++
+      document.getElementById("playerGameScore").innerHTML = playerGameScore;
+      document.getElementById("result").innerHTML = "You won! Your ${playerChoice} beat the computer's ${computerChoice2}.";
+    }
+    else if (computerChoice2 == "rock" && playerChoice == "scissors") {
+      computerGameScore++
+      document.getElementById("computerGameScore").innerHTML = computerGameScore;      
+      document.getElementById("result").innerHTML = "You lost! The computer's ${computerChoice2} beat your ${playerChoice}";
+    }
+    else if (computerChoice2 == "paper" && playerChoice == "rock") {
+      computerGameScore++
+      document.getElementById("computerGameScore").innerHTML = computerGameScore;
+      document.getElementById("result").innerHTML = "You lost! The computer's ${computerChoice2} beat your ${playerChoice}";
+    }
+    else if (computerChoice2 == "paper" && playerChoice == "scissors") {
+      playerGameScore++
+      document.getElementById("playerGameScore").innerHTML = computerGameScore;
+      document.getElementById("result").innerHTML = "You won! Your ${playerChoice} beat the computer's ${computerChoice2}.";
+    }
+    else if (computerChoice2 == "scissors" && playerChoice == "rock") {
+      playerGameScore++
+      document.getElementById("playerGameScore").innerHTML = playerGameScore;
+      document.getElementById("result").innerHTML = "You won! Your ${playerChoice} beat the computer's ${computerChoice2}.";
+    }
+    else if (computerChoice2 == "scissors" && playerChoice == "paper") {
+      computerGameScore++
+      document.getElementById("computerGameScore").innerHTML = playerGameScore;
+      document.getElementById("result").innerHTML = "You lost! The computer's ${computerChoice2} beat your ${playerChoice}";
+    }
+    else if (computerChoice2 === playerChoice) {
+      document.getElementById("result").innerHTML = "It's a tie!";  
+    }   
+} 
