@@ -36,4 +36,6 @@ body {
 
 .button {
     border-radius: 5px;
+    display: block;
+    margin: auto;
 }
