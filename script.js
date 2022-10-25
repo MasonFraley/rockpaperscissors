@@ -4,20 +4,14 @@ let playerGameScore = 0;
 let computerGameScore = 0;
 
 document.getElementById("rock").addEventListener("click", function(event) {
-  console.log("clicked rock");
-  generateComputerChoice();
   comparison(computerChoice2, this.id);
 });
 
 document.getElementById("paper").addEventListener("click", function(event) {
-  console.log("clicked paper");
-  generateComputerChoice();
   comparison(computerChoice2, this.id);
 });
 
 document.getElementById("scissors").addEventListener("click", function(event) {
-  console.log("clicked scissors");
-  generateComputerChoice();
   comparison(computerChoice2, this.id);
 });
 
